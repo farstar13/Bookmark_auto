@@ -649,7 +649,12 @@ autoFestival = function () {
   if (gamePage.calendar.festivalDays || !autoOptions.autoFestival || !gamePage.science.get('drama').researched)
     return;
 
-  if (gamePage.villageTab.festivalBtn.hasResources()) {
+  var festRes = {
+    catpower: gamePage.resPool.get('manpower').value,
+    culture: gamePage.resPool.get('culture').value,
+    parchment: gamePage.resPool.get('parchment').value
+  }
+  if (festRes.catpower >= 1500 && festRes.culture >= 5000 && festRes.parchment >= 2500) {
     gamePage.villageTab.holdFestival();
   }
 }
