@@ -247,35 +247,35 @@ function rawSecondsFormat(secondsRaw) {
 var defaultOptions = {
   warnOnLeave: true,
   autoStar: true,
-  autoCraft: true,
-  autoHunt: true,
-  autoPray: true,
-  autoTrade: true,
-  autoFestival: true,
+  autoCraft: false,
+  autoHunt: false,
+  autoPray: false,
+  autoTrade: false,
+  autoFestival: false,
   craftOptions: {
     craftLimit: 0.99,
-    craftWood: true,
-    woodAmount: 100,
-    craftBeam: true,
-    beamAmount: 50,
-    craftSlab: true,
-    slabAmount: 500,
-    craftSteel: true,
-    steelAmount: 50,
-    craftPlate: true,
-    plateAmount: 12000,
+    craftWood: false,
+    woodAmount: 10,
+    craftBeam: false,
+    beamAmount: 1,
+    craftSlab: false,
+    slabAmount: 1,
+    craftSteel: false,
+    steelAmount: 1,
+    craftPlate: false,
+    plateAmount: 1,
     craftAlloy: false,
     alloyAmount: 1,
-    craftEludium: true,
+    craftEludium: false,
     eludiumAmount: 1,
-    craftKerosene: true,
+    craftKerosene: false,
     keroseneAmount: 1,
-    festivalBuffer: true,
-    craftParchment: true,
+    festivalBuffer: false,
+    craftParchment: false,
     parchmentAmount: 1,
-    craftManuscript: true,
+    craftManuscript: false,
     manuscriptAmount: 1,
-    craftCompendium: true,
+    craftCompendium: false,
     compediumAmount: 1,
     craftBlueprint: false,
     blueprintAmount: 1,
@@ -307,7 +307,7 @@ var defaultOptions = {
     tradeCount: 1,
     tradeLimit: 0.99,
     suppressTradeLog: false,
-    tradePartner: "Spiders",
+    tradePartner: "",
     tradeSpring: false,
     tradePartnerSpring: "",
     tradeSummer: false,
@@ -315,7 +315,7 @@ var defaultOptions = {
     tradeAutumn: false,
     tradePartnerAutumn: "",
     tradeWinter: false,
-    tradePartnerWinter: "Zebras"
+    tradePartnerWinter: ""
   },
   showTimerDisplays: true
 }
@@ -738,7 +738,7 @@ function calculateUnicornBuild() {
     details += 'Unicorn/s increase with 1 more ' + buildings[i] + ': ' + gamePage.getDisplayValue(increases[i]);
     if (i != 0) {
       details += '<br>Total unicorns needed: ' + gamePage.getDisplayValueExt(Math.ceil(tears[i] / ziggurats) * 2500);
-      details += ' (' + gamePage.getDisplayValueExt(tears[i]) +' tears, ' + Math.ceil(tears[i] / ziggurats) + ' sacrifice(s))';
+      details += ' (' + gamePage.getDisplayValueExt(tears[i]) +' tears, ' + Math.ceil((tears[i] - gamePage.resPool.get('tears').value) / ziggurats) + ' more sacrifice(s))';
       details += '<br>'+checkUnicornReserves(tears[i], false, startUps, ivory[i])
     } else {
       details += '<br>Total unicorns needed: ' + gamePage.getDisplayValueExt(tears[i] / ziggurats * 2500);
